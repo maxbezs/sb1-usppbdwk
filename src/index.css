@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    font-variation-settings: "wght" 800;
+  }
+}
+
+/* Base background color */
+.film-grain {
+  background-color: #5A769D;
+}
+
+/* Glassmorphic Card Styles */
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.glass-card-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Base animations */
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes breathe {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+@keyframes reflection {
+  0% {
+    background-position: 200% 50%;
+    opacity: 0;
+  }
+  100% {
+    background-position: -200% 50%;
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(90, 118, 157, 0.1),
+      inset 0 0 20px rgba(90, 118, 157, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(90, 118, 157, 0.2),
+      inset 0 0 30px rgba(90, 118, 157, 0.2);
+  }
+}
+
+@keyframes input-shine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom Range Input Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 8px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, rgba(90, 118, 157, 0.3), rgba(90, 118, 157, 0.6));
+  border-radius: 4px;
+  height: 8px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right, rgba(90, 118, 157, 0.3), rgba(90, 118, 157, 0.6));
+  border-radius: 4px;
+  height: 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -4px;
+  background-color: #5A769D;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(90, 118, 157, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  background-color: #5A769D;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(90, 118, 157, 0.3);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: #4A6487;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(90, 118, 157, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background-color: #4A6487;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(90, 118, 157, 0.5);
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 20px rgba(90, 118, 157, 0.6);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  box-shadow: 0 0 20px rgba(90, 118, 157, 0.6);
+}
+
+/* Film grain effect */
+.film-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  animation: noise 0.5s infinite;
+  mix-blend-mode: overlay;
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.step-number {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.shining-input {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(90, 118, 157, 0.15) 45%,
+    rgba(90, 118, 157, 0.2) 50%,
+    rgba(90, 118, 157, 0.15) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 400% 100%;
+  animation: input-shine 8s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Fallbacks for browsers that don't support backdrop-filter */
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .glass-card-dark {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
