@@ -239,6 +239,12 @@ input[type="range"]:focus::-moz-range-thumb {
 
 .step-number {
   animation: pulse 3s ease-in-out infinite;
+  background: rgb(86, 118, 162);
+  background: linear-gradient(
+    -180deg,
+    rgba(86, 118, 162, 1) 65%,
+    rgba(255, 255, 255, 0.26) 100%
+  );
 }
 
 .shining-input {

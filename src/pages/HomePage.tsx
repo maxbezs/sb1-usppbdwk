@@ -4,7 +4,7 @@ import { Bell } from "lucide-react";
 import { PaymentCalendar } from "../components/PaymentCalendar";
 import { AnimatedText } from "../components/AnimatedText";
 import { useAuthStore } from "../store/authStore";
-import gradient from "../assets/bg-gradient-40.png";
+import gradient from "@/assets/bg-gradient-40.png";
 function HomePage() {
   const [username, setUsername] = useState("");
   const [subscribers, setSubscribers] = useState(10);
@@ -93,24 +93,29 @@ function HomePage() {
     <div className="relative min-h-screen text-white bg-[#43628c]">
       <div className="relative z-10">
         {/* Navigation */}
-        <nav className="fixed w-full z-50 px-6 py-4 bg-black/40 backdrop-blur-xl border-b border-white/10">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <nav className="fixed w-full z-50  bg-[#5176a8]/60 backdrop-blur-xl border-b border-white/50">
+          <img
+            src={gradient}
+            alt="nesso.link"
+            className="absolute inset-0 w-full h-full object-cover -z-10"
+          />
+          <div className="max-w-7xl h-full  min-h-[87px]  align-middle  mx-auto flex justify-between items-center">
             <img
               src="https://ccmklpdeyroazfftdugw.supabase.co/storage/v1/object/sign/Website%20images/nesso-plain-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJXZWJzaXRlIGltYWdlcy9uZXNzby1wbGFpbi1sb2dvLnBuZyIsImlhdCI6MTczNzU5OTAwNywiZXhwIjoxNzY5MTM1MDA3fQ.XDDD9bxMHavXbhlfp1rd5hto8i9Aboa9--uReC0QL0o&t=2025-01-23T02%3A23%3A26.930Z"
               alt="nesso.link"
               className="h-8 rounded"
             />
-            <div className="flex gap-8 items-center">
+            <div className="flex gap-16 items-center">
               <a
                 href="/dashboard"
-                className="text-white/90 hover:text-white transition"
+                className="text-white/90 text-lg font-semibold tracking-wider hover:text-white transition"
               >
                 DASHBOARD
               </a>
               <a
                 href="#"
                 onClick={handleEarningsClick}
-                className="text-white/90 hover:text-white transition"
+                className="text-white/90 text-lg font-semibold tracking-wider hover:text-white transition"
               >
                 EARNINGS
               </a>
@@ -129,47 +134,56 @@ function HomePage() {
         {/* Hero Section */}
         <section className="pt-32 pb-20 px-6">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="flex flex-col justify-center h-[600px] space-y-8">
-              <h1 className="text-4xl md:text-5xl font-[800] text-white max-w-md">
+            <div className="flex flex-col max-w-[522px] justify-center h-[600px] space-y-[65px]">
+              <h1 className="text-4xl md:text-5xl font-[800] text-white tracking-wide max-w-md">
                 Hey, wonderful...
               </h1>
-              <div className="space-y-6">
-                {[1, 2, 3].map((step) => (
-                  <div key={step} className="flex items-center gap-4 group">
-                    <div className="step-number w-12 h-12 rounded-full bg-black/40 backdrop-blur-lg flex items-center justify-center text-xl font-bold text-white shadow-lg transition-all duration-300 group-hover:scale-110">
-                      {step}
+              <div>
+                <div className="flex flex-col gap-7">
+                  {[1, 2, 3].map((step) => (
+                    <div key={step} className="flex items-center gap-6 group">
+                      <div className="step-number w-[46px] h-[46px] rounded-full bg-[#5676a2] backdrop-blur-lg flex items-center justify-center text-xl  text-white shadow-lg transition-all duration-300 group-hover:scale-110">
+                        {step}
+                      </div>
+                      <span className="text-3xl font-semibold text-white/90 ">
+                        {step === 1 && "Sign up"}
+                        {step === 2 && "Get your friends to sign up"}
+                        {step === 3 && "Earn money"}
+                      </span>
                     </div>
-                    <span className="text-xl font-semibold text-white/90">
-                      {step === 1 && "Sign up"}
-                      {step === 2 && "Get your friends to sign up"}
-                      {step === 3 && "Earn money"}
-                    </span>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              <p className="text-2xl  text-white/90">
-                with a link-in-bio tool that pays you when your <br /> followers
-                sign-up
-              </p>
+                <p className="text-lg font-semibold pl-6 mt-10 tracking-wider text-white/90">
+                  with a link-in-bio tool that pays you when your <br />{" "}
+                  followers sign-up
+                </p>
+              </div>
 
               <UsernameInput />
             </div>
-
-            <div className="relative overflow-hidden h-[600px] glass-card-dark">
-              <div className="animate-scroll grid grid-cols-2 gap-4 p-4">
-                {profiles.map((profile, i) => (
-                  <div key={i} className="glass-card-dark p-4">
-                    <img
-                      src={`${profile.img}?w=400&h=400&fit=crop`}
-                      alt={profile.name}
-                      className="w-full h-40 object-cover rounded-lg mb-4"
-                    />
-                    <h3 className="font-semibold text-white">{profile.name}</h3>
-                    <p className="text-sm text-white/70">{profile.role}</p>
-                  </div>
-                ))}
-              </div>
+            <div>
+              <div className="relative overflow-hidden h-[600px] glass-card-dark">
+                <div className="animate-scroll grid grid-cols-2 gap-4 p-4">
+                  {profiles.map((profile, i) => (
+                    <div key={i} className="glass-card-dark p-4">
+                      <img
+                        src={`${profile.img}?w=400&h=400&fit=crop`}
+                        alt={profile.name}
+                        className="w-full h-40 object-cover rounded-lg mb-4"
+                      />
+                      <h3 className="font-semibold text-white">
+                        {profile.name}
+                      </h3>
+                      <p className="text-sm text-white/70">{profile.role}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>{" "}
+              <p>
+                Want to appear here? New users are featured on our product
+                homepage!
+              </p>
             </div>
           </div>
         </section>
