@@ -1,128 +1,96 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Bell } from 'lucide-react';
-import { PaymentCalendar } from '../components/PaymentCalendar';
-import { AnimatedText } from '../components/AnimatedText';
-import { useAuthStore } from '../store/authStore';
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Bell } from "lucide-react";
+import { PaymentCalendar } from "../components/PaymentCalendar";
+import { AnimatedText } from "../components/AnimatedText";
+import { useAuthStore } from "../store/authStore";
+import gradient from "../assets/bg-gradient-40.png";
 function HomePage() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [subscribers, setSubscribers] = useState(10);
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
   const profiles = [
     {
-      name: 'Sarah Chen',
-      role: 'Digital Creator',
-      img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+      name: "Sarah Chen",
+      role: "Digital Creator",
+      img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
     },
     {
-      name: 'Alex Rivera',
-      role: 'Tech Founder',
-      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
+      name: "Alex Rivera",
+      role: "Tech Founder",
+      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
     },
     {
-      name: 'Maria Silva',
-      role: 'Content Creator',
-      img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
+      name: "Maria Silva",
+      role: "Content Creator",
+      img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
     },
     {
-      name: 'James Wilson',
-      role: 'Designer',
-      img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e',
+      name: "James Wilson",
+      role: "Designer",
+      img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
     },
     {
-      name: 'Emma Thompson',
-      role: 'Influencer',
-      img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb',
+      name: "Emma Thompson",
+      role: "Influencer",
+      img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
     },
     {
-      name: 'David Park',
-      role: 'Entrepreneur',
-      img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
+      name: "David Park",
+      role: "Entrepreneur",
+      img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
     },
     {
-      name: 'Lisa Johnson',
-      role: 'Artist',
-      img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9',
+      name: "Lisa Johnson",
+      role: "Artist",
+      img: "https://images.unsplash.com/photo-1517841905240-472988babdf9",
     },
     {
-      name: 'Michael Brown',
-      role: 'Developer',
-      img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d',
+      name: "Michael Brown",
+      role: "Developer",
+      img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
     },
   ];
 
   const handleEarningsClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate('/dashboard', { state: { activeTab: 'your-earnings' } });
+    navigate("/dashboard", { state: { activeTab: "your-earnings" } });
   };
 
-  const UsernameInput = ({ className = '' }: { className?: string }) => (
+  const UsernameInput = ({ className = "" }: { className?: string }) => (
     <div
-      className={`glass-card-dark px-4 rounded-2xl flex items-center gap-2 ${className}`}
+      className={`glass-card-dark rounded-xl bg-[#243567] flex  ${className}`}
     >
-      <span className="text-white/70">nesso.link/</span>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="yourname"
-        className="shining-input bg-transparent border-none outline-none flex-1 text-white placeholder-white/50 py-4 rounded"
-      />
-      <button
-        onClick={() => navigate(user ? '/dashboard' : '/auth/signup')}
-        className="px-6 py-4 bg-white/10 text-white rounded-xl hover:bg-white/20 transition"
-      >
-        {user ? 'GO TO DASHBOARD' : 'CLAIM IT'}
-      </button>
+      <p className="text-white tracking-wide text-[22px] py-2 pl-4 pr-2 flex align-middle items-center">
+        nesso.link/
+      </p>
+      <div className="relative bg-[#1e2769] rounded-xl -z-2  py-[6px] pl-2 pr-1 flex items-center flex-1 ">
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="yourname"
+          className=" text-[22px]  bg-transparent border-none outline-none z-1 flex-1 text-white placeholder-[#7982d1] rounded"
+        />
+        <img
+          src={gradient}
+          alt="nesso.link"
+          className="absolute inset-0 w-full h-full object-cover -z-1"
+        />
+        <button
+          onClick={() => navigate(user ? "/dashboard" : "/auth/signup")}
+          className="px-5 py-[10px] stroke-gradient bg-[#4153ac] tracking-widest min-h-[36px] min-w-[142px] h-full text-white rounded-xl hover:bg-white/20 transition"
+        >
+          {user ? "GO TO DASHBOARD" : "CLAIM IT"}
+        </button>
+      </div>
     </div>
   );
 
   return (
-    <div className="relative min-h-screen text-white film-grain bg-gray-900">
-      {/* Primary Gradient Background */}
-      <div
-        className="fixed inset-0 -z-20"
-        style={{
-          background: `
-            radial-gradient(
-              circle at 30% 20%,
-              #b1a1e3 0%,
-              rgba(177, 161, 227, 0.3) 10%,
-              rgba(177, 161, 227, 0.05) 25%,
-              transparent 50%
-            ),
-            radial-gradient(
-              circle at 70% 80%,
-              #b1a1e3 0%,
-              rgba(177, 161, 227, 0.3) 10%,
-              rgba(177, 161, 227, 0.05) 25%,
-              transparent 50%
-            ),
-            radial-gradient(
-              circle at 50% 50%,
-              rgba(177, 161, 227, 0.1) 0%,
-              rgba(177, 161, 227, 0.05) 15%,
-              transparent 40%
-            )
-          `,
-          backgroundSize: '200% 200%',
-          animation: 'breathe 5s ease-in-out infinite',
-        }}
-      />
-
-      {/* Frosted Glass Overlay */}
-      <div
-        className="fixed inset-0 -z-10"
-        style={{
-          backdropFilter: 'blur(100px) saturate(150%)',
-          background: 'rgba(0, 0, 0, 0.75)',
-          animation: 'glow 5s ease-in-out infinite',
-        }}
-      />
-
+    <div className="relative min-h-screen text-white bg-[#43628c]">
       <div className="relative z-10">
         {/* Navigation */}
         <nav className="fixed w-full z-50 px-6 py-4 bg-black/40 backdrop-blur-xl border-b border-white/10">
@@ -148,7 +116,7 @@ function HomePage() {
               </a>
               {!user && (
                 <button
-                  onClick={() => navigate('/auth/signin')}
+                  onClick={() => navigate("/auth/signin")}
                   className="px-4 py-2 bg-white/10 text-white rounded-full hover:bg-white/20 transition"
                 >
                   SIGN IN / SIGN UP
@@ -162,11 +130,8 @@ function HomePage() {
         <section className="pt-32 pb-20 px-6">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col justify-center h-[600px] space-y-8">
-              <h1
-                className="text-4xl md:text-5xl font-[800] text-white max-w-md"
-                style={{ fontFamily: 'Syne' }}
-              >
-                Hey wonderful...
+              <h1 className="text-4xl md:text-5xl font-[800] text-white max-w-md">
+                Hey, wonderful...
               </h1>
               <div className="space-y-6">
                 {[1, 2, 3].map((step) => (
@@ -175,16 +140,16 @@ function HomePage() {
                       {step}
                     </div>
                     <span className="text-xl font-semibold text-white/90">
-                      {step === 1 && 'Sign up'}
-                      {step === 2 && 'Get your friends to sign up'}
-                      {step === 3 && 'Earn money'}
+                      {step === 1 && "Sign up"}
+                      {step === 2 && "Get your friends to sign up"}
+                      {step === 3 && "Earn money"}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <p className="text-2xl text-white/90">
-                with a link-in-bio tool that pays you when your followers
+              <p className="text-2xl  text-white/90">
+                with a link-in-bio tool that pays you when your <br /> followers
                 sign-up
               </p>
 
@@ -210,7 +175,7 @@ function HomePage() {
         </section>
 
         {/* Commission Section */}
-        <section className="py-20 px-6">
+        <section className="py-20 px-6 bg-[#5a769d]">
           <div className="max-w-7xl mx-auto text-center space-y-12">
             <div className="space-y-4">
               <h2 className="text-4xl font-bold text-white">
@@ -219,14 +184,7 @@ function HomePage() {
               <h3 className="text-2xl text-white/90">
                 on all your nesso.link/users
               </h3>
-              <p className="max-w-2xl mx-auto text-white/70">
-                You no longer need a paid community to earn money from your
-                following. Simply showcase the personal or professional benefits
-                of the NESSO link-in-bio tool you use and point them to sign up
-                with your link.
-              </p>
             </div>
-
             <div className="max-w-xl mx-auto space-y-6 glass-card-dark p-8">
               <input
                 type="range"
@@ -241,6 +199,12 @@ function HomePage() {
                 <span>£{subscribers * 2} per month</span>
               </div>
             </div>
+            <p className="max-w-2xl text-xl mx-auto text-white/70">
+              You no longer need a paid community to earn money from your
+              following. Simply showcase the personal or professional benefits
+              of the NESSO link-in-bio tool you use and point them to sign up
+              with your link.
+            </p>
           </div>
         </section>
 
@@ -312,15 +276,20 @@ function HomePage() {
         </section>
 
         {/* Animated Heading Section */}
-        <section className="min-h-screen flex items-center px-6 bg-black/40 backdrop-blur-xl border-y border-white/10">
-          <div className="max-w-4xl mx-auto py-32 space-y-12">
+        <section className="relative max-h-[729px] flex items-center px-6 bg-[#334c87] backdrop-blur-xl border-y border-white/10">
+          <img
+            src={gradient}
+            alt="nesso.link"
+            className="absolute inset-0 w-full h-full object-cover -z-10"
+          />
+          <div className="max-w-3xl mx-auto py-32 space-y-[92px]  ">
             <AnimatedText
-              text="You're only 7 minutes away from monetising your followers with nesso.link/"
-              className="text-4xl md:text-6xl font-bold text-center"
+              text="You’re only 7 minutes away from monetising your following with nesso.link/"
+              className="text-[64px] leading-[56px] font-extrabold text-center"
             />
-            <UsernameInput className="max-w-xl mx-auto" />
-            <p className="text-center text-white/50 italic text-sm">
-              Message us on{' '}
+            <UsernameInput className="max-w-[522px] mx-auto" />
+            <p className="text-center tracking-widest italic text-lg ">
+              Message us on{" "}
               <a
                 href="https://www.instagram.com/raminvision"
                 target="_blank"
@@ -328,15 +297,15 @@ function HomePage() {
                 className="hover:text-white/70 transition-colors"
               >
                 Instagram
-              </a>{' '}
-              or{' '}
+              </a>{" "}
+              or{" "}
               <a
                 href="https://wa.link/d0oyj2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white/70 transition-colors"
               >
-                Whatsapp
+                WhatsApp
               </a>
             </p>
           </div>

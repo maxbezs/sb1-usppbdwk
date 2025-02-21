@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 interface AnimatedTextProps {
   text: string;
   className?: string;
 }
 
-export function AnimatedText({ text, className = '' }: AnimatedTextProps) {
+export function AnimatedText({ text, className = "" }: AnimatedTextProps) {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -27,19 +27,21 @@ export function AnimatedText({ text, className = '' }: AnimatedTextProps) {
     return () => observer.disconnect();
   }, []);
 
-  const words = text.split(' ');
+  const words = text.split(" ");
 
   return (
     <div ref={elementRef} className={className}>
-      <div className="flex flex-wrap justify-center gap-x-2">
+      <div className="flex flex-wrap justify-center gap-x-4">
         {words.map((word, index) => (
           <span
             key={`${word}-${index}`}
-            className={`inline-block opacity-0 ${word === 'nesso.link/' ? 'animated-underline' : ''}`}
+            className={`inline-block tracking-wide font-bold opacity-0 ${
+              word === "nesso.link/" ? "animated-underline" : ""
+            }`}
             style={{
               animation: isVisible
                 ? `fadeInSlide 0.15s ease-out forwards ${index * 0.1}s`
-                : 'none'
+                : "none",
             }}
           >
             {word}

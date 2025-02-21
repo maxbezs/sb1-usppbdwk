@@ -1,8 +1,8 @@
 @font-face {
   font-family: "SF Pro Display";
-  src: url("../src/assets/fonts/sf-pro-display-bold.woff2") format("woff2");
-  font-weight: 800;
-  font-style: bold;
+  src: url("../src/assets/fonts/sf-pro-display-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: regular;
 }
 
 @tailwind base;
@@ -31,11 +31,8 @@
 
 /* Glassmorphic Card Styles */
 .glass-card-dark {
-  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
 }
@@ -236,19 +233,6 @@ input[type="range"]:focus::-moz-range-thumb {
   box-shadow: 0 0 20px rgba(90, 118, 157, 0.6);
 }
 
-/* Film grain effect */
-.film-grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
-  pointer-events: none;
-  animation: noise 0.5s infinite;
-  mix-blend-mode: overlay;
-}
-
 .animate-scroll {
   animation: scroll 20s linear infinite;
 }
@@ -299,4 +283,32 @@ input[type="range"]:focus::-moz-range-thumb {
   .glass-card-dark {
     background: rgba(255, 255, 255, 0.25);
   }
+}
+
+.stroke-gradient {
+  background: radial-gradient(
+        circle at 100% 100%,
+        #3a4a99 0,
+        #3a4a99 10px,
+        transparent 10px
+      )
+      0% 0%/12px 12px no-repeat,
+    radial-gradient(circle at 0 100%, #3a4a99 0, #3a4a99 10px, transparent 10px)
+      100% 0%/12px 12px no-repeat,
+    radial-gradient(circle at 100% 0, #3a4a99 0, #3a4a99 10px, transparent 10px)
+      0% 100%/12px 12px no-repeat,
+    radial-gradient(circle at 0 0, #3a4a99 0, #3a4a99 10px, transparent 10px)
+      100% 100%/12px 12px no-repeat,
+    linear-gradient(#3a4a99, #3a4a99) 50% 50% / calc(100% - 4px)
+      calc(100% - 24px) no-repeat,
+    linear-gradient(#3a4a99, #3a4a99) 50% 50% / calc(100% - 24px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      136deg,
+      rgba(255, 255, 255, 0.44) 0%,
+      rgba(255, 255, 255, 0) 41%,
+      rgba(255, 255, 255, 0) 57%,
+      rgba(255, 255, 255, 0.13) 99%
+    );
+  box-sizing: border-box;
 }
